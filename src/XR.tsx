@@ -180,9 +180,67 @@ function XRCanvas({ foveation, children, ...rest }: ContainerProps & { foveation
 
 const createXRButton = (mode: 'AR' | 'VR', gl: any, sessionInit?: any) => {
   const button = mode === 'AR' ? ARButton : VRButton
+  const button2 = VRButton
+
   const selector = mode === 'AR' ? '#ARButton' : '#VRButton'
   if (document.querySelector(selector) === null) {
+    
+
+    const d = document.createElement('div')
+      d.setAttribute("style", " padding: 16px; z-index: 999; position:absolute; ") 
+      d.setAttribute("class", "logo")
+
+      const i = document.createElement('img')
+      i.src = "https://psyche.asu.edu/wp-content/themes/psyche/static/img/nasa.svg"
+      i.alt = "NASA"
+      i.setAttribute("style", "height:57px; width:auto; ") 
+      const li = document.createElement('a')
+      li.setAttribute("href", "https://www.nasa.gov")
+      li.appendChild(i)
+      
+
+      //<span class="divider" style="left:auto;"></span>
+      const s = document.createElement('span')
+      s.setAttribute("class", "divider logo")
+      s.setAttribute("style", "left:auto; width:1px; height: 57px; display:inline-block;  white-space: nowrap; font-family: monospace; margin: 0 14px; background: white;")
+
+      const i2 = document.createElement('img')
+      i2.src="https://psyche.asu.edu/wp-content/themes/psyche/static/img/psyche.svg"
+      i2.alt = "Psyche"
+      i2.setAttribute("style", "height:57px; width: auto; ") 
+      const li2 = document.createElement('a')
+      li2.setAttribute("href", "https://psyche.asu.edu")
+      li2.appendChild(i2)
+
+      const h = document.createElement('h1')
+      h.textContent = "Psyche Spacecraft"
+      h.setAttribute("style", "font-family: 'TradeGothic', 'Roboto', sans-serif; font-weight: bold; line-height:1.4; color:#a53f5b; font-size:xx-large; ")
+
+      const p = document.createElement('p')
+      p.textContent = "An interactive experience tracking Psyche spacecraft. \r\n Wait till 3D models are loaded and moving on screen"
+      p.setAttribute("style", "color:white; font-family: 'Helvetica', 'Arial', sans-serif; font-size:19px; font-weight:400; line-height: 1.65;")
+
+      d.appendChild(li)
+      d.appendChild(s)
+      d.appendChild(li2)
+
+      const t = document.createElement('div')
+      t.setAttribute("style", " padding: 16px; z-index: 999; position:absolute; ") 
+      t.setAttribute("id", "mytext")
+      t.appendChild(h)
+      t.appendChild(p)
+
+      
+      //document.body.prepend(t)
+      //document.body.prepend(d)
+      const r = document.getElementById("root")
+      r?.prepend(t)
+      r?.prepend(d)
+      
+
     document.body.appendChild(button.createButton(gl, sessionInit))
+    document.body.appendChild(button2.createButton(gl, sessionInit))
+    
   }
 }
 
